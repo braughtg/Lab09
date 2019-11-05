@@ -56,7 +56,18 @@ def run_simmod_orig(run_start_year, run_end_year, dt, rcp,
     return warming
 
 
-def run_simmod(start_year, end_year, rcp, CO2_init, CH4_init, N2O_init, CS_est, file):
-    results = run_simmod_orig(run_start_year, run_end_year, dt, rcp, 
-                              CO2_init, CH4_init, N2O_init, CS_est)
-    results.to_csv('results/' + file + '.csv')
+#def run_simmod(start_year, end_year, rcp, CO2_1750_ppm, CH4_1750_ppb, N2O_1750_ppb, CS_param, out_file):
+def run_simmod(start_year, end_year, rcp, CS_param, out_file):
+    """ Run a climate simulation for the specified range of years using
+         * the given rcp (e.g. '2.6', '4.5', '6.0' or '8.5')
+         * the climate sensitivity parameter
+         * and the full path and name of the output file into which the result are written.
+    """
+
+#    results = run_simmod_orig(start_year, end_year, dt, rcp, 
+#                              CO2_1750_ppm, CH4_1750_ppb, N2O_1750_ppb, CS_param)
+
+    results = run_simmod_orig(start_year, end_year, dt, rcp, 
+                              CO2_PPM_1750, CH4_PPB_1750, N2O_PPB_1750, CS_param)
+
+    results.to_csv(out_file)
